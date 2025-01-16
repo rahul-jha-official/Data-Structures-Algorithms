@@ -629,3 +629,141 @@ public class Solution
     }
 }
 ```
+
+
+<strong>Problem 10:<br>
+Bitwise XOR of All Pairings<br><br>
+You are given two 0-indexed arrays, nums1 and nums2, consisting of non-negative integers. There exists another array, nums3, which contains the bitwise XOR of all pairings of integers between nums1 and nums2 (every integer in nums1 is paired with every integer in nums2 exactly once).
+
+Return the bitwise XOR of all integers in nums3.
+
+ 
+
+Example 1:<br>
+Input: nums1 = [2,1,3], nums2 = [10,2,5,0]<br>
+Output: 13<br>
+Explanation:<br>
+A possible nums3 array is [8,0,7,2,11,3,4,1,9,1,6,3].<br>
+The bitwise XOR of all these numbers is 13, so we return 13.<br>
+
+Example 2:<br>
+Input: nums1 = [1,2], nums2 = [3,4]<br>
+Output: 0<br>
+Explanation:<br>
+All possible pairs of bitwise XORs are nums1[0] ^ nums2[0], nums1[0] ^ nums2[1], nums1[1] ^ nums2[0], and nums1[1] ^ nums2[1].
+Thus, one possible nums3 array is [2,5,1,6].<br>
+2 ^ 5 ^ 1 ^ 6 = 0, so we return 0.<br>
+</strong>
+
+Ref: https://leetcode.com/problems/bitwise-xor-of-all-pairings/description/
+
+```cs
+public class Solution 
+{
+    public int XorAllNums(int[] nums1, int[] nums2) 
+    {
+        if (nums1.Length % 2 == 0 && nums2.Length % 2 == 0) return 0;
+        
+        var s1 = 0;
+        var s2 = 0;
+        
+        if (nums1.Length % 2 != 0)
+        {
+            s1 = XOR(nums2);
+        }
+        if (nums2.Length % 2 != 0)
+        {
+            s2 = XOR(nums1);
+        }
+        return s1 ^ s2;
+    }
+    private static int XOR(int[] n)
+    {
+        var result = 0;
+        foreach (int i in n) result ^= i;
+        return result;
+    }
+}
+```
+
+<strong>Problem 11:<br>
+Minimize XOR<br><br>
+Given two positive integers num1 and num2, find the positive integer x such that:
+
+x has the same number of set bits as num2, and
+The value x XOR num1 is minimal.
+Note that XOR is the bitwise XOR operation.
+
+Return the integer x. The test cases are generated such that x is uniquely determined.
+
+The number of set bits of an integer is the number of 1's in its binary representation.
+
+ 
+
+Example 1:<br>
+Input: num1 = 3, num2 = 5<br>
+Output: 3<br>
+Explanation:<br>
+The binary representations of num1 and num2 are 0011 and 0101, respectively.<br>
+The integer 3 has the same number of set bits as num2, and the value 3 XOR 3 = 0 is minimal.<br>
+
+Example 2:<br>
+Input: num1 = 1, num2 = 12<br>
+Output: 3<br>
+Explanation:<br>
+The binary representations of num1 and num2 are 0001 and 1100, respectively.<br>
+The integer 3 has the same number of set bits as num2, and the value 3 XOR 1 = 2 is minimal.<br>
+</strong>
+
+```cs
+public class Solution 
+{
+    public int MinimizeXor(int num1, int num2) 
+    {
+        var count1 = CountOneBit(num1);
+        var count2 = CountOneBit(num2);
+        var result = num1;
+        if (count1 == count2)
+        {
+            result = num1;
+        }
+        else if (count2 > count1)
+        {
+            var bitsToAdd = count2 - count1;
+            var shift = 0;
+            while (bitsToAdd > 0)
+            {
+                if (((result >> shift) & 1) == 0)
+                {
+                    result |= (1 << shift);
+                    bitsToAdd--;
+                }
+                shift++;
+            }
+            return result;
+        }
+        else
+        {
+            var skip = count1 - count2;
+            while (skip-- > 0)
+            {
+                result &= (result - 1);
+            }
+        }
+
+        return result;
+    }
+
+    private static int CountOneBit(int n)
+    {
+        int count = 0;
+        while (n > 0)
+        {
+            if ((n & 1) == 1) count++;
+            n >>= 1;
+        }
+
+        return count;
+    }
+}
+```
