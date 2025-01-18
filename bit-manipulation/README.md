@@ -828,3 +828,32 @@ public class Solution
     }
 }
 ```
+
+## Meta Binary Search | One-Sided Binary Search
+Meta Binary Search, also known as One-Sided Binary Search, is a variation of the binary search algorithm that is used to search an ordered list or array of elements. This algorithm is designed to reduce the number of comparisons needed to search the list for a given element.
+<br><br>
+The basic idea behind Meta Binary Search is to start with an initial interval of size n that includes the entire array. The algorithm then computes a middle element, as in binary search, and compares it to the target element. If the target element is found, the search terminates. If the middle element is greater than the target element, the algorithm sets the new interval to the left half of the previous interval, and if the middle element is less than the target element, the new interval is set to the right half of the previous interval. However, unlike binary search, Meta Binary Search does not perform a comparison for each iteration of the loop.
+
+```cs
+public class MetaBinarySearch
+{
+    public int Search<T>(T[] list, T element) where T : IComparable<T>
+    {
+        int bitsNeededForMaxIndex = (int)Math.Ceiling(Math.Log2 (list.Length));
+        int cutoff = 0;
+        for (int i = bitsNeededForMaxIndex - 1; i >= 0; i--)
+        {
+            if (element.CompareTo(list[cutoff]) == 0) return cutoff;
+
+            int cutoffCandidate = cutoff | (1 << i);
+
+            if (cutoffCandidate < list.Length && element.CompareTo(list[cutoffCandidate]) >= 0)
+            {
+                cutoff = cutoffCandidate;
+            }
+        }
+        if (element.CompareTo(list[cutoff]) == 0) return cutoff;
+        return -1;
+    }
+}
+```
