@@ -808,6 +808,7 @@ Explanation: There is no valid original array that gives derived.<br>
 </strong>
 
 Ref: https://leetcode.com/problems/neighboring-bitwise-xor/description/
+<br>
 Hint:
 - Understand that from the original element, we are using each element twice to construct the derived array
 - The xor-sum of the derived array should be 0 since there is always a duplicate occurrence of each element.
