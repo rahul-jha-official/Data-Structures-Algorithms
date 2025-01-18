@@ -1,6 +1,6 @@
-## Dynamic Programming
+# Dynamic Programming
 
-### Recursion
+## Recursion
 Recursion in computer science is a technique where the solution to a problem depends on solutions to smaller instances of the same problem.
 
 Base Case: Case of recursion where the answer to the instance is known, where problem cannot be further broken down.
@@ -13,7 +13,8 @@ Recursion = Principal of Mathematical Induction
 Note:
 - Recursion always takes extra space due to implicit stack.
 
-<strong>Problem 1:<br> Factorial of a number.<br>
+### Problem 1
+<strong>Factorial of a number.<br>
 For N:<br>
 N! => N x (n - 1)!<br>
 (N - 1)! = (N - 1) x (N - 2)!<br>
@@ -35,8 +36,8 @@ public class Solution
     }
 }
 ```
-
-<strong>Problem 2:<br> Fibonacci series Nth Term.<br>
+### Problem 2
+<strong>Fibonacci series Nth Term.<br>
 For N:<br>
 Nth Term = (N - 1)th Term + (N - 2)th Term<br>
 
@@ -54,8 +55,8 @@ public class Solution
     }
 }
 ```
-
-<strong>Problem 3:<br> Write a function to check if an array is sorted.</strong>
+### Problem 3
+<strong>Write a function to check if an array is sorted.</strong>
 
 ```cs
 public class Solution
@@ -76,8 +77,8 @@ public class Solution
     }
 }
 ```
-
-<strong>Problem 4 <br> Print numbers 1...N recursively.</strong>
+### Problem 4
+<strong>Print numbers 1...N recursively.</strong>
 
 ```cs
 public class Solution
@@ -98,7 +99,8 @@ public class Solution
 }
 ```
 
-<strong>Problem 5 <br> Power of N.</strong>
+### Problem 5
+<strong>Power of N.</strong>
 
 ```cs
 public class Solution
@@ -134,7 +136,8 @@ public class Solution
 }
 ```
 
-<strong>Problem 5 <br> 
+### Problem 6
+<strong>
 Power of N.<br>
 Given a '4 x N' board and tiles of size '4 x 1', count the number of ways to tile the given board using '4 x 1' tiles.
 
@@ -142,12 +145,52 @@ Note: A tile can either be placed horizontally (1 x 4) or Vertically (4 x 1).
 
 </strong>
 
+<ins>Algorithm:</ins>
+
 Recursive Case:
 - If we place the tiles Vertically then we will be reducing the board size by 1.
 - If we place the tiles horizontally then we will be reducing the board size by 4.
-- N > 4 We can either place tiles horizontally or Vertically: f(N) = f(N-1) + f(N-4)
+- N > 4 We can either place tiles horizontally or Vertically: f(N) = f(N - 1) + f(N - 4)
+
 Base Case:
 - N = 0, 1 Way
 - N = 1, 1 Way
 - N = 2, 1 Way (since we have to place all the tiles Vertically)
 - N = 3, 1 (Way since we have to place all the tiles Vertically)
+
+<img width="634" alt="Tiling Problem" src="https://github.com/user-attachments/assets/e437c1e3-5a94-45cf-90ec-a40a28b2afa5" />
+
+### Problem 7
+<strong>
+Binary Strings <br> 
+Count the number of binary strings with no consecutive ones that can be formed using a binary string of Length N.
+</strong>
+
+Ref: https://leetcode.com/problems/non-negative-integers-without-consecutive-ones/description/
+
+Lets take N = 3
+We have can:
+```html
+000        100
+001        101
+010        110 x
+011 x      111 x
+```
+
+<ins>Algorithm:</ins>
+
+Recursive Case:
+- If we place 0 at some place, then on next place we can have anything
+- If we place 1 at some place, then on next place we cannot place 1 thus we have to place 0
+- f(N) = f(N - 1) + f(N - 2)
+
+Base Case:
+- N = 0, 1 Way
+- N = 1, 2 Way
+- N = 2, 3 Way
+
+### Problem 8
+<strong>
+Friend's Pairing Problem
+Given n friends who want to got to the party, each one can remain single or can be paired up with some other friend. Each friend can be paired only once. Find out the total number of ways in which friends can remain single or can be paired up.
+</strong>
