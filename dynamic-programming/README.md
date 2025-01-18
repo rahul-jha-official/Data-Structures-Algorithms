@@ -194,3 +194,14 @@ Base Case:
 Friend's Pairing Problem
 Given n friends who want to got to the party, each one can remain single or can be paired up with some other friend. Each friend can be paired only once. Find out the total number of ways in which friends can remain single or can be paired up.
 </strong>
+
+<ins>Algorithm:</ins>
+
+Recursive Case:
+- One person can alone
+- If a person can pair up with someone, then there will be 'n - 1' option he/she will be having to make pair
+- f(N) = f(N - 1) + f(N - 2) (N - 1)
+
+Base Case:
+- N = 0, 1 Way
+- N = 1, 1 Way
