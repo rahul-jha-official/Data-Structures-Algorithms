@@ -1,7 +1,7 @@
-## [Bit Manipulation](#bit-manipulation)
+# Bit Manipulation
 Bit Manipulation is used in the variety of problems. Sometimes, the question explicitly calls for bit manipulation. Other times, it's simply useful technique to optimize your code.
 
-### Truth Tables
+## Truth Tables
 
 **NOT (~)**
 | A | ~A |
@@ -33,7 +33,7 @@ Bit Manipulation is used in the variety of problems. Sometimes, the question exp
 | 1 | 0 | 1 |
 | 1 | 1 | 0 |
 
-### Bit Facts and Tricks
+## Bit Facts and Tricks
 The following expressions are useful in bit manipulation:
 
 | Expression | Result | Notes |
@@ -49,7 +49,7 @@ The following expressions are useful in bit manipulation:
 | x &#124; 1s | 1 |  |
 | x &#124; x  | x |  |
 
-### Two's Complement and Negative Number
+## Two's Complement and Negative Number
 Computers typically store integers in two's complement representaion. A positive number is represented as itself while a negative number is represented as two's complement of its absolute value(with 1 in its sign bit to indicate that a negative value).
 
 The two's complement of N-Bit number (where N is the number of bits used for the number,excluding the sign bit). is the complement of number with respect to 2^N.
@@ -73,7 +73,7 @@ Positive Number	Negative Number
     1 0001		        	-7   1001
     0 0000
 
-### C# In-built Function
+## C# In-built Function
 **How to convert from Decimal to Binary?**
 
 Lets say you want to convert n to binary: 
@@ -106,8 +106,10 @@ var n1 = 0xc;
 int n2 = 0xc;
 ```
 
-### Bit Manipulation Problems
-**Problem 1:<br>We are given two 32-Bits Numbers, N & M and 2 bit positions, i & j. Write a solution to insert M into N such that M starts with j and ends with i in N.<br>Assumptions: N have enough bits to fit all bits of M.<br><br>Example:<br>N = 100000000000<br>M = 10011<br>i = 2<br>j = 6<br>Output: N = 10001001100**
+## Bit Manipulation Problems
+
+### Problem 1
+**We are given two 32-Bits Numbers, N & M and 2 bit positions, i & j. Write a solution to insert M into N such that M starts with j and ends with i in N.<br>Assumptions: N have enough bits to fit all bits of M.<br><br>Example:<br>N = 100000000000<br>M = 10011<br>i = 2<br>j = 6<br>Output: N = 10001001100**
 
 <ins>**Algorithm**</ins>
 
@@ -136,8 +138,8 @@ public class Solution
     }
 }
 ```
-
-**Problem 2:<br>Given a real number between 0 and 1 (e.g., 0.72) that is passed in as double , return the Binary representaion. If number cannot be represented accurately in binary with at most 32 characters, return 'ERROR'**
+### Problem 2
+**Given a real number between 0 and 1 (e.g., 0.72) that is passed in as double , return the Binary representaion. If number cannot be represented accurately in binary with at most 32 characters, return 'ERROR'**
 
 <ins>**Way 1**</ins>
 ```cs
@@ -212,7 +214,8 @@ public class Solution
 }
 ```
 
-**Problem 3:<br> You have an integer and you can flip exactly one bit from a 0 to a 1. Write a code to find the length of the sequence of 1s you could create.<br>Example<br>Input: 1775 (or: 11011101111)<br>Output: 8**
+### Problem 3
+**You have an integer and you can flip exactly one bit from a 0 to a 1. Write a code to find the length of the sequence of 1s you could create.<br>Example<br>Input: 1775 (or: 11011101111)<br>Output: 8**
 <br><br>
 Ref: https://www.geeksforgeeks.org/find-longest-sequence-1s-binary-representation-one-flip/
 
@@ -250,8 +253,8 @@ public class Solution
 }
 ```
 
-
-<strong>Problem 4:<br> An n-bit gray code sequence is a sequence of 2n integers where:
+### Problem 4
+<strong>An n-bit gray code sequence is a sequence of 2n integers where:
 - Every integer is in the inclusive range [0, 2n - 1],
 - The first integer is 0,
 - An integer appears no more than once in the sequence,
@@ -317,7 +320,8 @@ public class Solution
 }
 ```
 
-<strong>Problem 5:<br> Given an integer array nums of unique elements, return all possible subsets (the power set).
+### Problem 5
+<strong>Given an integer array nums of unique elements, return all possible subsets (the power set).
 The solution set must not contain duplicate subsets. Return the solution in any order.
 
 Example 1:<br>
@@ -348,7 +352,8 @@ public class Solution
 }
 ```
 
-<strong>Problem 6:<br> Given an integer n, return true if it is a power of two. Otherwise, return false. An integer n is a power of two, if there exists an integer x such that n == 2<sup>x</sup>
+### Problem 6
+<strong>Given an integer n, return true if it is a power of two. Otherwise, return false. An integer n is a power of two, if there exists an integer x such that n == 2<sup>x</sup>
 
 Example 1:<br>
 Input: n = 1<br>
@@ -398,8 +403,8 @@ public class Solution
 }
 ```
 
-
-<strong>Problem 7:<br> The DNA sequence is composed of a series of nucleotides abbreviated as 'A', 'C', 'G', and 'T'.
+### Problem 7
+<strong>The DNA sequence is composed of a series of nucleotides abbreviated as 'A', 'C', 'G', and 'T'.
 
 For example, "ACGAATTCCG" is a DNA sequence.
 When studying DNA, it is useful to identify repeated sequences within the DNA.
@@ -479,8 +484,8 @@ public class Solution
 }
 ```
 
-
-<strong>Problem 8:<br> Given two integers left and right that represent the range [left, right], return the bitwise AND of all numbers in this range, inclusive.
+### Problem 8
+<strong>Given two integers left and right that represent the range [left, right], return the bitwise AND of all numbers in this range, inclusive.
  
 
 Example 1:<br>
@@ -512,8 +517,8 @@ public class Solution
 }
 ```
 
-
-<strong>Problem 8:<br> Given a string array words, return the maximum value of length(word[i]) * length(word[j]) where the two words do not share common letters. If no such two words exist, return 0.
+### Problem 9
+<strong>Given a string array words, return the maximum value of length(word[i]) * length(word[j]) where the two words do not share common letters. If no such two words exist, return 0.
 
 Example 1:<br>
 Input: words = ["abcw","baz","foo","bar","xtfn","abcdef"]<br>
@@ -566,8 +571,8 @@ public class Solution
     }
 }
 ```
-
-<strong>Problem 9:<br>
+### Problem 10
+<strong>
 Given a positive integer n, you can apply one of the following operations:
 If n is even, replace n with n / 2.
 If n is odd, replace n with either n + 1 or n - 1.
@@ -630,8 +635,8 @@ public class Solution
 }
 ```
 
-
-<strong>Problem 10:<br>
+### Problem 11
+<strong>
 Bitwise XOR of All Pairings<br><br>
 You are given two 0-indexed arrays, nums1 and nums2, consisting of non-negative integers. There exists another array, nums3, which contains the bitwise XOR of all pairings of integers between nums1 and nums2 (every integer in nums1 is paired with every integer in nums2 exactly once).
 
@@ -685,8 +690,8 @@ public class Solution
     }
 }
 ```
-
-<strong>Problem 11:<br>
+### Problem 12
+<strong>
 Minimize XOR<br><br>
 Given two positive integers num1 and num2, find the positive integer x such that:
 
@@ -770,7 +775,8 @@ public class Solution
 }
 ```
 
-<strong>Problem 12:<br>
+### Problem 13
+<strong>
 Neighboring Bitwise XOR<br>
 A 0-indexed array derived with length n is derived by computing the bitwise XOR (⊕) of adjacent values in a binary array original of length n.
 
