@@ -715,6 +715,8 @@ The binary representations of num1 and num2 are 0001 and 1100, respectively.<br>
 The integer 3 has the same number of set bits as num2, and the value 3 XOR 1 = 2 is minimal.<br>
 </strong>
 
+Ref: https://leetcode.com/problems/minimize-xor/description/
+
 ```cs
 public class Solution 
 {
@@ -764,6 +766,64 @@ public class Solution
         }
 
         return count;
+    }
+}
+```
+
+<strong>Problem 12:<br>
+Neighboring Bitwise XOR<br>
+A 0-indexed array derived with length n is derived by computing the bitwise XOR (⊕) of adjacent values in a binary array original of length n.
+
+Specifically, for each index i in the range [0, n - 1]:
+
+If i = n - 1, then derived[i] = original[i] ⊕ original[0].
+Otherwise, derived[i] = original[i] ⊕ original[i + 1].
+Given an array derived, your task is to determine whether there exists a valid binary array original that could have formed derived.
+
+Return true if such an array exists or false otherwise.
+
+A binary array is an array containing only 0's and 1's
+
+Example 1:<br>
+Input: derived = [1,1,0]<br>
+Output: true<br>
+Explanation:<br>
+A valid original array that gives derived is [0,1,0].<br>
+derived[0] = original[0] ⊕ original[1] = 0 ⊕ 1 = 1 <br>
+derived[1] = original[1] ⊕ original[2] = 1 ⊕ 0 = 1<br>
+derived[2] = original[2] ⊕ original[0] = 0 ⊕ 0 = 0<br>
+
+Example 2:<br>
+Input: derived = [1,1]<br>
+Output: true<br>
+Explanation: A valid original array that gives derived is [0,1].<br>
+derived[0] = original[0] ⊕ original[1] = 1<br>
+derived[1] = original[1] ⊕ original[0] = 1<br>
+
+Example 3:<br>
+Input: derived = [1,0]<br>
+Output: false<br>
+Explanation: There is no valid original array that gives derived.<br>
+
+</strong>
+
+Ref: https://leetcode.com/problems/neighboring-bitwise-xor/description/
+Hint:
+- Understand that from the original element, we are using each element twice to construct the derived array
+- The xor-sum of the derived array should be 0 since there is always a duplicate occurrence of each element.
+
+
+```cs
+public class Solution 
+{
+    public bool DoesValidArrayExist(int[] derived) 
+    {
+        var result = 0;
+        foreach (int i in derived)
+        {
+            result ^= i;
+        }
+        return result == 0;
     }
 }
 ```
