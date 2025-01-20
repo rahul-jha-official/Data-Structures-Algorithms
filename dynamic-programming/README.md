@@ -205,3 +205,27 @@ Recursive Case:
 Base Case:
 - N = 0, 1 Way
 - N = 1, 1 Way
+
+### Problem 9 - Tower of Hanoi
+Tower of Hanoi is a mathematical puzzle where we have three rods (A, B, and C) and N disks. Initially, all the disks are stacked in decreasing value of diameter i.e., the smallest disk is placed on the top and they are on rod A. The objective of the puzzle is to move the entire stack to another rod (here considered C), obeying the following simple rules: 
+- Only one disk can be moved at a time.
+- Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack i.e. a disk can only be moved if it is the uppermost disk on a stack.
+- No disk may be placed on top of a smaller disk.
+
+![image](https://github.com/user-attachments/assets/bd5637c1-6531-4851-8a47-b81b1e093156)
+
+```cs
+public class Solution
+{
+    public void TowerOfHanoi(int n, char from, char aux, char to)
+    {
+        if (n <= 0) return;
+        TowerOfHanoi(n - 1, from, to, aux);
+        Console.WriteLine($"Rod_{from} -> Rod_{to}");
+        TowerOfHanoi(n - 1, aux, from, to);
+    }
+}
+```
+
+Time complexity: O(2<sup>N</sup>), There are two possibilities for every disk. Therefore, 2 * 2 * 2 * . . . * 2(N times) is 2N<br> 
+Auxiliary Space: O(N), Function call stack space<br> 
