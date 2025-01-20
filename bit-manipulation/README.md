@@ -835,6 +835,142 @@ public class Solution
 }
 ```
 
+### Problem 14
+<strong>
+    Given an integer array data representing the data, return whether it is a valid UTF-8 encoding (i.e. it translates to a sequence of valid UTF-8 encoded characters).<br><br>
+
+A character in UTF8 can be from 1 to 4 bytes long, subjected to the following rules:<br>
+
+For a 1-byte character, the first bit is a 0, followed by its Unicode code.<br>
+For an n-bytes character, the first n bits are all one's, the n + 1 bit is 0, followed by n - 1 bytes with the most significant 2 bits being 10.<br>
+This is how the UTF-8 encoding would work:<br>
+
+![image](https://github.com/user-attachments/assets/bcc63880-894a-416c-a56c-a6d70c93fa51)
+
+x denotes a bit in the binary form of a byte that may be either 0 or 1.<br>
+
+Note: The input is an array of integers. Only the least significant 8 bits of each integer is used to store the data. This means each integer represents only 1 byte of data.<br>
+
+Example 1:<br>
+Input: data = [197,130,1]<br>
+Output: true<br>
+Explanation: data represents the octet sequence: 11000101 10000010 00000001.<br>
+It is a valid utf-8 encoding for a 2-bytes character followed by a 1-byte character.<br>
+
+Example 2:<br>
+Input: data = [235,140,4]<br>
+Output: false<br>
+Explanation: data represented the octet sequence: 11101011 10001100 00000100.<br>
+The first 3 bits are all one's and the 4th bit is 0 means it is a 3-bytes character.<br>
+The next byte is a continuation byte which starts with 10 and that's correct.<br>
+But the second continuation byte does not start with 10, so it is invalid.<br>
+</strong>
+
+Ref: https://leetcode.com/problems/utf-8-validation/description/
+
+<strong>Way 1:</strong>
+```cs
+public class Solution 
+{
+    public bool ValidUtf8(int[] data) 
+    {
+        for (int i = 0; i < data.Length; )
+        {
+            var first = data[i];
+            if (first > 255)
+            {
+                return false;
+            }
+
+            if ((first >> 7) == 0)
+            {
+                i++;
+            }
+            else if ((first >> 3) == 0b11110)
+            {
+                if (!ValidUtf8(data, i, 4)) return false;
+                i += 4;
+            }
+            else if ((first >> 4) == 0b1110)
+            {
+                if (!ValidUtf8(data, i, 3)) return false;
+                i += 3;
+            }
+            else if ((first >> 5) == 0b110)
+            {
+                if (!ValidUtf8(data, i, 2)) return false;
+                i += 2;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static bool ValidUtf8(int[] data, int i, int next)
+    {
+        if ((i + next) > data.Length)
+        {
+            return false;
+        }
+        for (int j = i + 1; j < (i + next) && j < data.Length; j++)
+        {
+            if ((data[j] >> 6) != 0b10)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+```
+
+<strong>Way 2:</strong>
+```cs
+public class Solution 
+{
+    public bool ValidUtf8(int[] data) 
+    {
+        for (int i = 0; i < data.Length; )
+        {
+            var length = data[i].UTF8Length();
+            if (!data.IsValidUTF8Encoding(i, length)) return false;
+            i += length;
+        }
+        return true;
+    }
+}
+
+public static class SolutionExtension
+{
+    public static int UTF8Length(this int n)
+    {
+        if ((n & 0b10000000) == 0) return 1;
+        else if ((n & 0b11100000) == 0b11000000) return 2;
+        else if ((n & 0b11110000) == 0b11100000) return 3;
+        else if ((n & 0b11111000) == 0b11110000) return 4;
+        return ~0;
+    }
+    public static bool IsValidUTF8Encoding(this int[] nums, int index, int count)
+    {
+        if (count == ~0 || (index + count) > nums.Length) return false;
+        for (int i = index + 1; i < (index  + count); i++)
+        {
+            if (!IsContinuationNumber(nums[i])) return false;
+        }
+        return true;        
+    }
+
+    private static bool IsContinuationNumber(int n)
+    {
+        return (n & 0b11000000) == 0b10000000;
+    } 
+}
+```
+
+
 ## Meta Binary Search | One-Sided Binary Search
 Meta Binary Search, also known as One-Sided Binary Search, is a variation of the binary search algorithm that is used to search an ordered list or array of elements. This algorithm is designed to reduce the number of comparisons needed to search the list for a given element.
 <br><br>
