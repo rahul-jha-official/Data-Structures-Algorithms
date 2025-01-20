@@ -440,3 +440,4 @@ public class Solution
     }
 }
 ```
+Complexity: O(N<sup>N</sup>) or o(N!)
