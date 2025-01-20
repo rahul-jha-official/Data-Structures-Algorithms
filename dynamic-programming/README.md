@@ -380,6 +380,7 @@ public class Solution
 <strong>
     Count the numbers of ways to place the Queeen.
 </strong>
+<br><br>
 
 ```cs
 public class Solution
