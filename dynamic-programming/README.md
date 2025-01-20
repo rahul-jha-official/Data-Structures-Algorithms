@@ -229,3 +229,213 @@ public class Solution
 
 Time complexity: O(2<sup>N</sup>), There are two possibilities for every disk. Therefore, 2 * 2 * 2 * . . . * 2(N times) is 2N<br> 
 Auxiliary Space: O(N), Function call stack space<br> 
+
+
+## Backtracking
+- Algorithmic Technique
+- Recursively trying to build solution
+- Searching the entire search space to solve a computation problem
+
+### Problem Types
+- Decision Problem - check for feasible solution
+- Optimisation Problem - find the best solution
+- Enumeration Problem - find all solution
+
+### Problem 10 - Power Set
+<strong>Given an integer array nums of unique elements, return all possible subsets (the power set).
+The solution set must not contain duplicate subsets. Return the solution in any order.
+
+Example 1:<br>
+Input: nums = [1,2,3]<br>
+Output: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]<br><br>
+Example 2:<br>
+Input: nums = [0]<br>
+Output: [[],[0]]</strong>
+<br><br>
+
+
+Ref: https://leetcode.com/problems/subsets/description/
+
+```cs
+public class Solution
+{
+    private IList<IList<int>> result = new();
+
+    public IList<IList<int>> Subsets(int[] nums)
+    {
+        Find(nums, new List<int>(nums.Length), 0);
+        return result;
+    }
+
+    private void Find(int[] nums, List<int> list, int i)
+    {
+        if (i == nums.Length)
+        {
+            result.Add(new List<int>(list));
+            return;
+        }
+
+        list.Add(nums[i]);
+        Find(nums, list, i + 1);
+        list.RemoveAt(list.Count - 1);
+        Find(nums, list, i + 1);
+    }
+}
+```
+
+### Problem 11 - N Queens
+<strong>The N Queen is the problem of placing N chess queens on an N×N chessboard so that no two queens attack each other.
+<img height="300" alt="image" src="https://github.com/user-attachments/assets/40c3a690-be22-4482-8d5e-1a3091f28ab2" />
+<img height="300" alt="image" src="https://github.com/user-attachments/assets/d7d28bdb-11e1-489c-8a5a-ccf221d1c145" />
+
+N Queen Problem using Backtracking:<br>
+The idea is to place queens one by one in different columns, starting from the leftmost column. When we place a queen in a column, we check for clashes with already placed queens. In the current column, if we find a row for which there is no clash, we mark this row and column as part of the solution. If we do not find such a row due to clashes, then we backtrack and return false.
+
+<img width="751" alt="image" src="https://github.com/user-attachments/assets/026ee17d-f8dd-4d7d-9cfd-2b4f03191633" />
+
+</strong>
+<br><br>
+
+```cs
+public class Solution
+{
+    private readonly int[][] _board;
+    private readonly int _size;
+    public Solution(int size)
+    {
+        _size = size;
+        //Preparing the board
+        _board = new int[size][];
+        for (int i = 0; i < size; i++)
+        {
+            _board[i] = new int[size];
+        }
+    }
+
+    public bool SolveNQueen(int row)
+    {
+        if (row == _size)
+        {
+            //Print the board
+            PrintBoard();
+            return true;
+        }
+
+        for (int i = 0; i < _size; i++)
+        {
+            if (CanPlace(row, i))
+            {
+                _board[row][i] = 1;
+                bool success = SolveNQueen(row + 1);
+
+                if (!success)
+                {
+                    _board[row][i] = 0;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private bool CanPlace(int row, int col)
+    {
+        if (row ==  0)
+        {
+            return true;
+        }
+
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < _size; j++)
+            {
+                if (_board[i][j] == 1)
+                {
+                    if (col == j || Math.Abs(row - i) == Math.Abs(col - j)) return false;
+                    break;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private void PrintBoard()
+    {
+        foreach (int[] row in _board)
+        {
+            foreach (int col in row)
+            {
+                Console.Write($"{(col == 1 ? 'Q' : 'X')} ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+```
+
+<strong>
+    Count the numbers of ways to place the Queeen.
+</strong>
+
+```cs
+public class Solution
+{
+    private readonly int[][] _board;
+    private readonly int _size;
+    public Solution(int size)
+    {
+        _size = size;
+        //Preparing the board
+        _board = new int[size][];
+        for (int i = 0; i < size; i++)
+        {
+            _board[i] = new int[size];
+        }
+    }
+
+    public int SolveNQueen(int row)
+    {
+        if (row == _size)
+        {
+            return 1;
+        }
+        int ways = 0;
+        for (int i = 0; i < _size; i++)
+        {
+            if (CanPlace(row, i))
+            {
+                _board[row][i] = 1;
+                ways += SolveNQueen(row + 1);
+                _board[row][i] = 0;
+            }
+        }
+        return ways;
+    }
+
+    private bool CanPlace(int row, int col)
+    {
+        if (row ==  0)
+        {
+            return true;
+        }
+
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < _size; j++)
+            {
+                if (_board[i][j] == 1)
+                {
+                    if (col == j || Math.Abs(row - i) == Math.Abs(col - j)) return false;
+                    break;
+                }
+            }
+        }
+
+        return true;
+    }
+}
+```
