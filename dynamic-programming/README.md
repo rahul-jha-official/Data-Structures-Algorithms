@@ -296,6 +296,8 @@ The idea is to place queens one by one in different columns, starting from the l
 </strong>
 <br><br>
 
+Ref: https://leetcode.com/problems/n-queens/description/
+
 ```cs
 public class Solution
 {
