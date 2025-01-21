@@ -460,7 +460,7 @@ Output: ["()"]<br>
 
 Ref: https://leetcode.com/problems/generate-parentheses/description/
 
-<br><br>
+<br>
 
 ```cs
 public class Solution 
