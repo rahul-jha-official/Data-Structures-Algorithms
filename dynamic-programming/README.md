@@ -443,3 +443,69 @@ public class Solution
 }
 ```
 Complexity: O(N<sup>N</sup>) or o(N!)
+
+### Problem 11 - Generate Parentheses
+<strong>
+Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.<br><br>
+
+Example 1:<br>
+Input: n = 3<br>
+Output: ["((()))","(()())","(())()","()(())","()()()"]<br><br>
+
+Example 2:<br>
+Input: n = 1<br>
+Output: ["()"]<br>
+
+</strong>
+
+Ref: https://leetcode.com/problems/generate-parentheses/description/
+
+<br><br>
+
+```cs
+public class Solution 
+{
+    public IList<string> GenerateParenthesis(int n) 
+    {
+        var result = new List<string>();
+        Generate(new char[2 * n], 0, result);
+        return result;        
+    }
+    public void Generate(char[] braces, int index, List<string> result)
+    {
+        if (index == braces.Length)
+        {
+            if (IsValid(braces))
+            {
+                result.Add(string.Join("", braces));
+            }
+            return;
+        }
+
+        if (index is 0)
+        {
+            braces[0] = '(';
+            Generate(braces, 1, result);
+        }
+        else
+        {
+            braces[index] = '(';
+            Generate(braces, index + 1, result);
+            braces[index] = ')';
+            Generate(braces, index + 1, result);
+        }
+    }
+    private bool IsValid(char[] braces) 
+    {
+        int check = 0;
+        for (int i = 0; i < braces.Length; i++)
+        {
+            if (braces[i] == '(') check++;
+            else check--;
+
+            if (check < 0) return false;
+        }
+        return check == 0;
+    }
+}
+```
