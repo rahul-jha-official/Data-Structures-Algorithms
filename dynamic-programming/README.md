@@ -584,9 +584,11 @@ public class Solution
 ```
 
 <br>
+
 **Similar Problem: Validate if Soduko board is valid.**
-<br>
+
 Ref: https://leetcode.com/problems/valid-sudoku/description/
+
 ```cs
 public class Solution 
 {
