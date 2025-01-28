@@ -639,3 +639,81 @@ public class Solution
     }
 }
 ```
+
+### Hamiltonian Path
+
+Hamiltonian Path is a path in a directed or undirected graph that visits each vertex exactly once. The problem to check a graph (directed or undirected) contains a Hamiltonian path is NP-Complete, so it is the problem of finding all the Hamiltonian Paths in a graph.
+
+### Problem 13 - Unique Path 3
+
+Ref: https://leetcode.com/problems/unique-paths-iii/description/
+
+```cs
+public class Solution 
+{
+    private readonly int[][] directions = new int[4][]
+    {
+        new int[] {0, -1},
+        new int[] {0, 1},
+        new int[] {-1, 0},
+        new int[] {1, 0},
+    };
+
+    public int UniquePathsIII(int[][] grid) 
+    {
+        var visited = new bool[grid.Length][];
+        for (int i = 0; i < grid.Length; i++) visited[i] = new bool[grid[0].Length];
+        
+        var obstacles = 0;
+        var startX = 0;
+        var startY = 0;
+
+        for (int i = 0; i < grid.Length; i++)
+        {
+            for (int j = 0; j < grid[i].Length; j++)
+            {
+                if (grid[i][j] == 1)
+                {
+                    startX = i;
+                    startY = j;
+                    visited[startX][startY] = true;
+                }
+
+                if (grid[i][j] == -1)
+                {
+                    obstacles++;
+                }
+            }
+        }
+
+        return CanWin(grid, visited, startX, startY, 1, obstacles);
+    }
+
+    private int CanWin(int[][] grid, bool[][] visited, int i, int j, int count, int obstacles)
+    {
+        if (grid[i][j] == 2)
+        {
+            return count == (grid.Length * grid[0].Length - obstacles) ? 1 : 0;
+        }
+
+        var result = 0;
+
+        foreach (var direction in directions)
+        {
+            var x = i + direction[0];
+            var y = j + direction[1];
+
+            if (x < 0 || y < 0 || x >= grid.Length || y >= grid[0].Length) continue;
+
+            if (!visited[x][y] && grid[x][y] != -1)
+            {
+                visited[x][y] = true;
+                result += CanWin(grid, visited, x, y, count + 1, obstacles);
+                visited[x][y] = false;
+            }
+        }
+
+        return result;
+    }
+}
+```
