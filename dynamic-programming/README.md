@@ -509,3 +509,76 @@ public class Solution
     }
 }
 ```
+
+
+### Problem 12 - Solve Sudoku
+
+Ref: https://leetcode.com/problems/sudoku-solver/description/
+
+```cs
+public class Solution 
+{
+    private const int max = 9;
+    public void SolveSudoku(char[][] board) 
+    {
+        Solve(board, 0, 0);
+    }
+
+    private bool Solve(char[][] board, int i, int j)
+    {
+        if (i == board.Length)
+        {
+            return true;
+        }
+
+        if (j == board.Length)
+        {
+            return Solve(board, i + 1, 0);
+        }
+
+        if (board[i][j] != '.')
+        {
+            return Solve(board, i, j + 1);
+        }
+
+        for (int n = 1; n <= max; n++)
+        {
+            if (CanPlace(board, i, j, (char)('0' + n))) 
+            {
+                board[i][j] = (char)('0' + n);
+                if (Solve(board, i, j + 1))
+                {
+                    return true;
+                }
+            }
+        }
+
+        board[i][j] = '.';
+        return false;
+    }
+
+    private bool CanPlace(char[][] board, int i, int j, char n)
+    {
+        for (int k = 0; k < board.Length; k++)
+        {
+            if (board[i][k] == n || board[k][j] == n) return false;
+        }
+
+        var x = (i / 3) * 3;
+        var y = (j / 3) * 3;
+
+        for (int r = x; r < (3 + x); r++)
+        {
+            for (int c = y; c < (3 + y); c++)
+            {
+                if (board[r][c] == n)
+                {
+                    return false;
+                }
+            }            
+        }
+
+        return true;
+    }
+}
+```
