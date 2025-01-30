@@ -970,6 +970,21 @@ public static class SolutionExtension
 }
 ```
 
+### Problem: Number of 1 Bits
+
+Ref: https://leetcode.com/problems/number-of-1-bits/description/
+
+```cs
+public class Solution 
+{
+    public int HammingWeight(int n) 
+    {
+        if (n == 0) return 0;
+        else if (n == 1) return 1;
+        else return HammingWeight(n >> 1) + (n & 1);
+    }
+}
+```
 
 ## Meta Binary Search | One-Sided Binary Search
 Meta Binary Search, also known as One-Sided Binary Search, is a variation of the binary search algorithm that is used to search an ordered list or array of elements. This algorithm is designed to reduce the number of comparisons needed to search the list for a given element.
