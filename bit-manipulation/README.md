@@ -970,7 +970,7 @@ public static class SolutionExtension
 }
 ```
 
-### Problem: Number of 1 Bits
+### Problem 15: Number of 1 Bits
 
 Ref: https://leetcode.com/problems/number-of-1-bits/description/
 
@@ -982,6 +982,27 @@ public class Solution
         if (n == 0) return 0;
         else if (n == 1) return 1;
         else return HammingWeight(n >> 1) + (n & 1);
+    }
+}
+```
+
+### Problem 16: Counting Bits
+
+Ref: https://leetcode.com/problems/counting-bits/description/
+
+```cs
+public class Solution 
+{
+    public int[] CountBits(int n) 
+    {
+        var result = new int[n + 1];
+
+        for (int i = 1; i <= n; i++)
+        {
+            result[i] = result[i / 2] + (i & 1);
+        }
+        
+        return result;
     }
 }
 ```
