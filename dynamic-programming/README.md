@@ -717,3 +717,34 @@ public class Solution
     }
 }
 ```
+
+
+## Tiling Problems
+### Problem 14: Domino and Tromino Tiling
+
+Ref: https://leetcode.com/problems/domino-and-tromino-tiling/description/
+
+```cs
+public class Solution 
+{
+    private const long MODULO = 1_000_000_007;
+    public int NumTilings(int n) 
+    {
+        var f = new long[n + 1];
+        var g = new long[n + 1];
+
+        for (int i = 0; i <= 2 && i <= n; i++)
+        {
+            f[i] = g[i] = i;
+        }
+
+        for (int i = 3; i <= n; i++)
+        {
+            f[i] = (f[i - 1] + f[i - 2] + 2 * g[i - 2]) % MODULO;
+            g[i] = (g[i - 1] + f[i - 1]) % MODULO;
+        }
+        
+        return (int)f[n];
+    }
+}
+```
