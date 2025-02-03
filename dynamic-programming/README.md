@@ -748,3 +748,60 @@ public class Solution
     }
 }
 ```
+
+## Pascal Triangle
+In mathematics, Pascal's triangle is an infinite triangular array of the binomial coefficients which play a crucial role in probability theory, combinatorics, and algebra.
+
+![image](https://github.com/user-attachments/assets/13177e41-24d5-40ed-8f13-c40b8cde1ee8)
+
+### Patterns Within the Triangle
+- The first diagonal is, of course, just "1"s
+- The next diagonal has the Counting Numbers (1,2,3, etc).
+- The third diagonal has the triangular numbers
+    - Nth Term of the series is **N (N + 1) / 2**
+- The fourth diagonal, not highlighted, has the tetrahedral numbers.
+    - Nth Term of the series is (n * (n + 1) * (n + 2)) / 6
+
+![image](https://github.com/user-attachments/assets/afd0edc0-ef68-4975-b8a4-b338080cc752)
+
+### Symmetrical
+The triangle is also symmetrical. The numbers on the left side have identical matching numbers on the right side, like a mirror image.
+
+![image](https://github.com/user-attachments/assets/996b026e-2b1f-40c3-bfb8-d315697b63c4)
+
+### Horizontal Sums
+- The horizontal sum is Power of 2.
+- Nth Term of the series is 2 <sup>N - 1</sup>
+
+<br>
+
+![image](https://github.com/user-attachments/assets/c8d5a669-c822-4120-ac80-2a64c6331033)
+
+### Exponents of 11
+Each line is also the powers (exponents) of 11:
+- 11<sup>0</sup> = 1
+- 11<sup>1</sup> = 11
+- 11<sup>2</sup> = 121
+- ...
+- 11<sup>5</sup> = 161051 <br><br>
+  ![image](https://github.com/user-attachments/assets/55f42b3f-8489-4742-8214-bf6b45ee27de)
+
+<br>
+
+![image](https://github.com/user-attachments/assets/d8b54be7-455e-45dd-a34a-bff9eb965820)
+
+### Fibonacci Sequence
+The Fibonacci Sequence is the series of numbers:
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+
+![image](https://github.com/user-attachments/assets/f043a844-194b-43cd-8388-65e88a8e5413)
+
+### Odds and Evens
+If we color the Odd and Even numbers, we end up with a pattern the same as the Sierpinski Triangle
+
+![image](https://github.com/user-attachments/assets/3c5a5f0b-0956-4c5a-8da4-c2355f94661d)
+
+### Polynomials
+Pascal's Triangle also shows us the coefficients in binomial expansion:
+
+![image](https://github.com/user-attachments/assets/5bec5f87-209f-4d79-b781-f4dbe751ce64)
