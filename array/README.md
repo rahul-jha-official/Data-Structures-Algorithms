@@ -259,12 +259,12 @@ public class HeapSort<T> where T: IComparable<T>
 
             if (left < limit && right < limit)
             {
-                if (array[left].CompareTo(array[j]) >= 0 && array[left].CompareTo(array[right]) > 0)
+                if (array[left].CompareTo(array[j]) >= 0 && array[left].CompareTo(array[right]) >= 0)
                 {
                     (array[left], array[j]) = (array[j], array[left]);
                     j = left;
                 }
-                else if (array[right].CompareTo(array[j]) >= 0 && array[left].CompareTo(array[right]) < 0)
+                else if (array[right].CompareTo(array[j]) >= 0 && array[left].CompareTo(array[right]) <= 0)
                 {
                     (array[right], array[j]) = (array[j], array[right]);
                     j = right;
