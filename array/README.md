@@ -127,7 +127,7 @@ Merge sort is a sorting algorithm that follows the divide-and-conquer approach. 
   - Best Case: O(n log n), When the array is already sorted or nearly sorted.
   - Average Case: O(n log n), When the array is randomly ordered.
   - Worst Case: O(n log n), When the array is sorted in reverse order.
-- Auxiliary Space: O(n), Additional space is required for the temporary array used during merging.
+- Auxiliary Space: O(1), Additional space is required for the temporary array used during merging.
 
 ```cs
 public class MergeSort<T> where T: IComparable<T>
@@ -160,6 +160,41 @@ public class MergeSort<T> where T: IComparable<T>
                 array[index + 1] = array[index--];
             }
             array[index + 1] = value;
+        }
+    }
+}
+```
+### Counting Sort
+Counting Sort is a non-comparison-based sorting algorithm. It is particularly efficient when the range of input values is small compared to the number of elements to be sorted. The basic idea behind Counting Sort is to count the frequency of each distinct element in the input array and use that information to place the elements in their correct sorted positions.
+
+* Note that it will only work with limited set of number 'k' such that 'k' is too much less than size of the number 'n'.
+* Creating a list of 'k' elements store the count in the list and finally insert each number based on their count
+
+**Complexity Analysis of Merge Sort**
+- Time Complexity: O(N+M), where N and M are the size of inputArray[] and countArray[] respectively
+  - Best Case: O(N+M)
+  - Average Case: O(N+M)
+  - Worst Case: O(N+M)
+- Auxiliary Space: O(N+M)
+
+```cs
+public class CountingSort<T> where T: IComparable<T>
+{
+    public void Sort(T[] array)
+    {
+        var maps = new SortedDictionary<T, int>();
+        foreach (var item in array)
+        {
+            if (!maps.ContainsKey(item)) maps.Add(item, 0);
+            maps[item]++;
+        }
+        int index = 0;
+        foreach (var item in maps.Keys)
+        {
+            for (int i = 0; i < maps[item]; i++)
+            {
+                array[index++] = item;
+            }
         }
     }
 }
