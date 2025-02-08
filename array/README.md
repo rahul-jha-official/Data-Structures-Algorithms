@@ -199,3 +199,98 @@ public class CountingSort<T> where T: IComparable<T>
     }
 }
 ```
+
+### Heap Sort
+Heap sort is a comparison-based sorting technique based on Binary Heap Data Structure. It can be seen as an optimization over selection sort where we first find the max (or min) element and swap it with the last (or first). We repeat the same process for the remaining elements. In Heap Sort, we use Binary Heap so that we can quickly find and move the max element in O(Log n) instead of O(n) and hence achieve the O(n Log n) time complexity.
+
+- Heap is a Binary Tree with the following property:
+    - Tree should be complete. Left node should be filled first before filing the right element.
+    - Every Node's key is larger than (or equal to) the key of its children.
+
+Algorithm:
+- Create a heap from the array elements.
+- Poll (Fetch the Root and then delete the root) the element from the heap and store the element in the last.
+- Repeat the process unti the heap become empty.
+
+Complexity Analysis of Heap Sort
+- Time Complexity: O(n log n)
+- Auxiliary Space: O(log n), due to the recursive call stack. However, auxiliary space can be O(1) for iterative implementation.
+
+```cs
+public class HeapSort<T> where T: IComparable<T>
+{
+    public void Sort(T[] array)
+    {
+        CreateHeap(array);
+        
+        for (int i = array.Length - 1; i >= 0; i--)
+        {
+            (array[0], array[i]) = (array[i], array[0]);
+            FixHeapForward(array, i);
+        }
+    }
+
+    private void CreateHeap(T[] array)
+    {
+        for (int i = 1; i < array.Length; i++)
+        {
+            FixHeapReverse(array, i);
+        }
+    }
+
+    private void FixHeapReverse(T[] array, int i)
+    {
+        int j = (i - 1) / 2;
+        while (array[i].CompareTo(array[j]) > 0) 
+        {
+            (array[i], array[j]) = (array[j], array[i]);
+            i = j;
+            j = (i - 1) / 2;
+        }
+    }
+
+    private void FixHeapForward(T[] array, int limit)
+    {
+        int j = 0;
+        while (j < limit)
+        {
+            int left = 2 * j + 1;
+            int right = 2 * j + 2;
+
+            if (left < limit && right < limit)
+            {
+                if (array[left].CompareTo(array[j]) >= 0 && array[left].CompareTo(array[right]) > 0)
+                {
+                    (array[left], array[j]) = (array[j], array[left]);
+                    j = left;
+                }
+                else if (array[right].CompareTo(array[j]) >= 0 && array[left].CompareTo(array[right]) < 0)
+                {
+                    (array[right], array[j]) = (array[j], array[right]);
+                    j = right;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else if (left < limit)
+            {
+                if (array[left].CompareTo(array[j]) >= 0)
+                {
+                    (array[left], array[j]) = (array[j], array[left]);
+                    j = left;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+}
+```
