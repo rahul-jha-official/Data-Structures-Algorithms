@@ -3,7 +3,6 @@
 public class ReverseLikedList2 
 {
     private ListNode start;
-
     public ListNode ReverseBetween(ListNode head, int left, int right) 
     {
         if (left == right) return head;
@@ -18,7 +17,6 @@ public class ReverseLikedList2
         }
 
         FindEndAndReplace(start.next, count + 1, left, right);
-
         return head;
     }
 
