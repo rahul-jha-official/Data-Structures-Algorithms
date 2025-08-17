@@ -2,7 +2,7 @@
 
 public class FormMaximumNumber 
 {
-    public int Maximum69Number (int num) 
+    public int Maximum69Number(int num) 
     {
         var n = Reverse(num);
         var divisor = 1;
@@ -13,7 +13,6 @@ public class FormMaximumNumber
 
         return divisor > num ? num : Reverse(((int)(n / (divisor * 10)) * 10 + 9) * divisor + (n % divisor));
     }
-
     private static int Reverse(int num)
     {
         var result = 0;
