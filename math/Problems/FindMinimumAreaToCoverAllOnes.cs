@@ -8,9 +8,9 @@ public class FindMinimumAreaToCoverAllOnes
         var max_i = 0;
         var min_j = 1001;
         var max_j = 0;
-        for (int i = 0; i < grid.Length; i++)
+        for (var i = 0; i < grid.Length; i++)
         {
-            for (int j = 0; j < grid[0].Length; j++)
+            for (var j = 0; j < grid[0].Length; j++)
             {
                 if (grid[i][j] == 1)
                 {
