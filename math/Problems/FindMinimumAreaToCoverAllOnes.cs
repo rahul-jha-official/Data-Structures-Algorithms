@@ -25,3 +25,4 @@ public class FindMinimumAreaToCoverAllOnes
         return (max_i - min_i + 1) * (max_j - min_j + 1);   
     }
 }
+
