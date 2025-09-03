@@ -33,3 +33,4 @@ public class MaximumAveragePassRatio
         return 1.0 - newRatio + currentRatio;
     }
 }
+
