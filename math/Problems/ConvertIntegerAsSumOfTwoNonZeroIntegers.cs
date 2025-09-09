@@ -26,3 +26,4 @@ public class ConvertIntegerAsSumOfTwoNonZeroIntegers
         return true;
     }
 }
+
