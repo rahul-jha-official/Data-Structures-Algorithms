@@ -1,6 +1,7 @@
 // LINK - https://leetcode.com/problems/find-triangular-sum-of-an-array/description/
 
-public class TriangularSumOfAnArray {
+public class TriangularSumOfAnArray 
+{
     public int TriangularSum(int[] nums) 
     {
         while (nums.Length > 1)
